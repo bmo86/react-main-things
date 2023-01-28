@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import ReactDom from "react-dom/client";
 //import { Greeting, UserCard } from "./Greeting";
 //import Product, { Nanbar } from "./Product";
@@ -27,15 +27,32 @@ const usrs = [
 
 const root = ReactDom.createRoot(document.getElementById("root"));
 
+function Counter() {
+  // var and function = useState
+  const [message, setMessage] = useState("Usuario");
+  //use state container of values and return var and func change value of var
+
+  return (
+    <div>
+      <input
+        onChange={(e) => {
+          setMessage(e.target.value);
+        }}
+      />
+      <button
+        onClick={() => {
+          alert("the Message is : " + message);
+        }}
+      >
+        Save
+      </button>
+      <h1>{message}</h1>
+    </div>
+  );
+}
+
 root.render(
   <>
-    {usrs.map((user, i) => {
-      return (
-        <div key={i}>
-          <h1>{user.name}</h1>
-          <img src={user.image}/>
-        </div>
-      );
-    })}
+    <Counter />
   </>
 );
